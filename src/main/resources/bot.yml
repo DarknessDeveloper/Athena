@@ -1,0 +1,18 @@
+token: "BOT_TOKEN_HERE"
+activation-key: "ACTIVATION_KEY"
+
+debug: true
+check-for-updates: true
+use-experimental-command-line: true
+events:
+    skip-cancelled: false
+status:
+    type: PLAYING
+    message: "Early Access Release."
+ids:
+    announcements: "00000000000000000"
+mysql:
+    host: localhost
+    username: athena
+    database: athena
+    password: "$Athena$"

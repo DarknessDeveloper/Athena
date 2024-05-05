@@ -1,0 +1,1 @@
+CREATE TABLE IF NOT EXISTS role_users (`id` INT NOT NULL AUTO_INCREMENT , `role_id` INT NOT NULL DEFAULT '0' , `user_id` TEXT NULL , `guild_id` TEXT NULL , PRIMARY KEY (`id`));

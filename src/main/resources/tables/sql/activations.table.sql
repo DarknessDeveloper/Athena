@@ -1,0 +1,1 @@
+CREATE TABLE IF NOT EXISTS `activations` (`id` int(11) NOT NULL AUTO_INCREMENT, `plugin_id` int(11) NOT NULL DEFAULT 0, `guild` text DEFAULT NULL, PRIMARY KEY (`id`));

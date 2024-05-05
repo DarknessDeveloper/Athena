@@ -1,0 +1,85 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+    id 'com.github.johnrengelman.shadow' version '7.1.0'
+}
+
+group = 'lol.athena'
+version = '1.1'
+
+shadowJar {
+    archiveFileName = "athena-${version}.jar"
+    manifest {
+        attributes(
+                'Main-Class': 'lol.athena.Athena'
+        )
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "net.dv8tion:JDA:5.0.0-alpha.3"
+    implementation "org.apache.commons:commons-lang3:3.12.0"
+    implementation "com.google.guava:guava:31.1-jre"
+    implementation "com.google.code.gson:gson:2.9.0"
+    implementation "org.yaml:snakeyaml:1.30"
+    implementation "mysql:mysql-connector-java:8.0.29"
+    implementation "com.oracle.database.jdbc:ojdbc10:19.15.0.0"
+    implementation "org.xerial:sqlite-jdbc:3.39.2.0"
+    implementation "com.h2database:h2:2.1.214"
+    implementation "org.apache.commons:commons-dbcp2:2.9.0"
+    implementation "commons-logging:commons-logging:1.2"
+    implementation "org.apache.commons:commons-pool2:2.11.1"
+    implementation "org.projectlombok:lombok:1.18.24"
+    implementation "org.jline:jline:3.21.0"
+    implementation "org.jline:jline-terminal-jansi:3.21.0"
+    implementation "org.fusesource.jansi:jansi:2.4.0"
+
+    annotationProcessor "org.projectlombok:lombok:1.18.24"
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    archiveFileName = "athena-${version}-sources.jar"
+    from sourceSets.main.allSource
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'lol.athena.Athena'
+        )
+    }
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = "lol.athena"
+            artifactId = 'athena'
+            version = "${version}"
+
+            // Specify the main JAR with a different classifier
+            artifact(shadowJar) {
+                classifier = ''
+            }
+
+
+            artifact(sourcesJar) {
+                classifier = 'sources'
+            }
+        }
+    }
+    repositories {
+        maven {
+            name = "dxtrusReleases"
+            url = "https://maven.asdev.info/releases"
+            credentials(PasswordCredentials)
+            authentication {
+                basic(BasicAuthentication)
+            }
+        }
+    }
+}
