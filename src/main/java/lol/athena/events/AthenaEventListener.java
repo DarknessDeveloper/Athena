@@ -5,6 +5,7 @@ import lol.athena.plugin.events.Cancellable;
 import lol.athena.plugin.events.PluginEvent;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import net.dv8tion.jda.annotations.ForRemoval;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.events.Event;
 import net.dv8tion.jda.api.events.ExceptionEvent;
@@ -59,6 +60,8 @@ import java.util.List;
 
 @SuppressWarnings({"deprecation"})
 @AllArgsConstructor
+@Deprecated
+@ForRemoval
 public class AthenaEventListener extends ListenerAdapter {
 
     @Getter private Athena bot;
