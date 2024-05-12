@@ -214,102 +214,6 @@ public class AthenaEventListener extends ListenerAdapter {
         invokeEvent(event.getClass(), event);
     }
 
-//	@Override
-//	public void onGenericApplicationCommand(GenericApplicationCommandEvent event) {
-//		invokeEvent(event.getClass(), event);
-//	}
-//
-//	@Override
-//	public void onGenericChannel(GenericChannelEvent event) {
-//		//invokeEvent(event.getClass(), event);
-//	}
-//
-//	@Override
-//	public void onGenericChannelUpdate(GenericChannelUpdateEvent<?> event) {
-//		invokeEvent(event.getClass(), event);
-//	}
-//
-//	@Override
-//	public void onGenericComponentInteractionCreate(GenericComponentInteractionCreateEvent event) {
-//		invokeEvent(event.getClass(), event);
-//	}
-//
-//	@Override
-//	public void onGenericEmote(GenericEmoteEvent event) {
-//		//invokeEvent(event.getClass(), event);
-//	}
-//
-//	@Override
-//	public void onGenericEmoteUpdate(GenericEmoteUpdateEvent event) {
-//		invokeEvent(event.getClass(), event);
-//	}
-//
-//	@Override
-//	public void onGenericGuild(GenericGuildEvent event) {
-//		//invokeEvent(event.getClass(), event);
-//	}
-//
-//	@Override
-//	public void onGenericGuildInvite(GenericGuildInviteEvent event) {
-//		invokeEvent(event.getClass(), event);
-//	}
-//
-//	@Override
-//	public void onGenericGuildMember(GenericGuildMemberEvent event) {
-//		invokeEvent(event.getClass(), event);
-//	}
-//
-//	@Override
-//	public void onGenericGuildMemberUpdate(GenericGuildMemberUpdateEvent event) {
-//		invokeEvent(event.getClass(), event);
-//	}
-//
-//	@Override
-//	public void onGenericGuildUpdate(GenericGuildUpdateEvent event) {
-//		invokeEvent(event.getClass(), event);
-//	}
-//
-//	@Override
-//	public void onGenericGuildVoice(GenericGuildVoiceEvent event) {
-//		invokeEvent(event.getClass(), event);
-//	}
-//
-//	@Override
-//	public void onGenericInteractionCreate(GenericInteractionCreateEvent event) {
-//		invokeEvent(event.getClass(), event);
-//	}
-//
-//	@Override
-//	public void onGenericMessage(GenericMessageEvent event) {
-//		//invokeEvent(event.getClass(), event);
-//	}
-//
-//	@Override
-//	public void onGenericMessageReaction(GenericMessageReactionEvent event) {
-//		invokeEvent(event.getClass(), event);
-//	}
-//
-//	@Override
-//	public void onGenericPermissionOverride(GenericPermissionOverrideEvent event) {
-//		invokeEvent(event.getClass(), event);
-//	}
-//
-//	@Override
-//	public void onGenericRole(GenericRoleEvent event) {
-//		//invokeEvent(event.getClass(), event);
-//	}
-//
-//
-//	@Override
-//	public void onGenericRoleUpdate(GenericRoleUpdateEvent event) {
-//		invokeEvent(event.getClass(), event);
-//	}
-//
-//	@Override
-//	public void onGenericSelfUpdate(GenericSelfUpdateEvent event) {
-//		invokeEvent(event.getClass(), event);
-//	}
-
     @Override
     public void onRawGateway(RawGatewayEvent event) {
         // invokeEvent(event.getClass(), event);
@@ -795,30 +699,7 @@ public class AthenaEventListener extends ListenerAdapter {
     public void onHttpRequest(HttpRequestEvent event) {
         // invokeEvent(event.getClass(), event);
     }
-//
-//	@Override
-//	public void onGenericUser(GenericUserEvent event) {
-//		//invokeEvent(event.getClass(), event);
-//	}
-//
-//	@Override
-//	public void onGenericStageInstance(GenericStageInstanceEvent event) {
-//		invokeEvent(event.getClass(), event);
-//	}
-//
-//	@Override
-//	public void onGenericStageInstanceUpdate(GenericStageInstanceUpdateEvent event) {
-//		invokeEvent(event.getClass(), event);
-//	}
-//
-//	@Override
-//	public void onGenericThread(GenericThreadEvent event) {
-//		//invokeEvent(event.getClass(), event);
-//	}
-//
-//	@Override
-//	public void onGenericThreadMember(GenericThreadMemberEvent event) {
-//		//invokeEvent(event.getClass(), event);
-//	}
+
+
 
 }

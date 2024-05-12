@@ -9,6 +9,7 @@ import lol.athena.engine.Engine;
 import lol.athena.engine.sql.EngineSql;
 import lol.athena.engine.sqlite.EngineSqLite;
 import lol.athena.events.AthenaEventListener;
+import lol.athena.events.NewAthenaEventListener;
 import lol.athena.plugin.PluginManager;
 import lol.athena.staff.StaffManager;
 import lol.athena.versioning.VersionChecker;
@@ -78,7 +79,7 @@ public class Athena {
 	@Getter private Thread commandLineThread;
 	@Getter private PluginManager pluginManager;
 	@Getter private StaffManager staffManager;
-	@Getter private AthenaEventListener eventListener;
+	@Getter private NewAthenaEventListener eventListener;
 	@Getter private Gson gson;
 	@Getter private JDA jda;
 	@Getter private boolean skipCancelledEventInvocations = true;
@@ -130,7 +131,7 @@ public class Athena {
 		var builder = JDABuilder.createDefault(getConfig().getString("token"));
 		builder.enableIntents(Arrays.asList(GatewayIntent.values())); // all intents, as we don't know which ones
 																		// plugins will require.
-		eventListener = new AthenaEventListener(this);
+		eventListener = new NewAthenaEventListener(this);
 
 		/////////////////////////////////////////////////
 		// Connect to Discord, 10 max failed attempts. //
