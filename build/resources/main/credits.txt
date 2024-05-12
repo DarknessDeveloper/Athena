@@ -1,0 +1,6 @@
+The majority of the code is first-party.
+
+Credits:
+	• Bukkit
+	• SpigotMC
+	

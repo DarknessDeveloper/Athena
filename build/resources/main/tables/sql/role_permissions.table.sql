@@ -1,0 +1,1 @@
+CREATE TABLE IF NOT EXISTS role_permissions (`id` INT NOT NULL AUTO_INCREMENT , `role_id` INT NOT NULL DEFAULT '0' , `guild_id` TEXT NULL , `permission` TEXT NULL , PRIMARY KEY (`id`));

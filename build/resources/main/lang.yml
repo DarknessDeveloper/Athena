@@ -1,0 +1,14 @@
+mysql:
+    establishing: "Establishing a database connection"
+log:
+    startup:
+        fail: "Unable to log startup to Discord."
+    shutdown:
+        header: "=-=-=-= Athena is shutting down! =-=-=-="
+        fail: "Unable to log shutdown to Discord."
+    config:
+        not-found: "No config file found, please set your token in the newly generated config file, and start the bot again."
+plugins:
+    loaded: "Loaded {0} plugins total."
+    skipped-total: "A total of {0} plugins were skipped due to errors or missing dependencies."
+critical: "A critical exception was thrown."
