@@ -1,67 +1,22 @@
 package lol.athena.events;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
-
 import lol.athena.Athena;
 import lol.athena.plugin.events.Cancellable;
 import lol.athena.plugin.events.PluginEvent;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import net.dv8tion.jda.api.entities.Guild;
-import net.dv8tion.jda.api.events.DisconnectEvent;
 import net.dv8tion.jda.api.events.Event;
 import net.dv8tion.jda.api.events.ExceptionEvent;
 import net.dv8tion.jda.api.events.GatewayPingEvent;
 import net.dv8tion.jda.api.events.RawGatewayEvent;
-import net.dv8tion.jda.api.events.ReadyEvent;
-import net.dv8tion.jda.api.events.ReconnectedEvent;
-import net.dv8tion.jda.api.events.ResumedEvent;
-import net.dv8tion.jda.api.events.ShutdownEvent;
-import net.dv8tion.jda.api.events.StatusChangeEvent;
-import net.dv8tion.jda.api.events.application.ApplicationCommandCreateEvent;
-import net.dv8tion.jda.api.events.application.ApplicationCommandDeleteEvent;
-import net.dv8tion.jda.api.events.application.ApplicationCommandUpdateEvent;
 import net.dv8tion.jda.api.events.channel.ChannelCreateEvent;
 import net.dv8tion.jda.api.events.channel.ChannelDeleteEvent;
-import net.dv8tion.jda.api.events.channel.update.ChannelUpdateArchiveTimestampEvent;
-import net.dv8tion.jda.api.events.channel.update.ChannelUpdateArchivedEvent;
-import net.dv8tion.jda.api.events.channel.update.ChannelUpdateAutoArchiveDurationEvent;
-import net.dv8tion.jda.api.events.channel.update.ChannelUpdateBitrateEvent;
-import net.dv8tion.jda.api.events.channel.update.ChannelUpdateInvitableEvent;
-import net.dv8tion.jda.api.events.channel.update.ChannelUpdateLockedEvent;
-import net.dv8tion.jda.api.events.channel.update.ChannelUpdateNSFWEvent;
-import net.dv8tion.jda.api.events.channel.update.ChannelUpdateNameEvent;
-import net.dv8tion.jda.api.events.channel.update.ChannelUpdateParentEvent;
-import net.dv8tion.jda.api.events.channel.update.ChannelUpdatePositionEvent;
-import net.dv8tion.jda.api.events.channel.update.ChannelUpdateRegionEvent;
-import net.dv8tion.jda.api.events.channel.update.ChannelUpdateSlowmodeEvent;
-import net.dv8tion.jda.api.events.channel.update.ChannelUpdateTopicEvent;
-import net.dv8tion.jda.api.events.channel.update.ChannelUpdateTypeEvent;
-import net.dv8tion.jda.api.events.channel.update.ChannelUpdateUserLimitEvent;
-import net.dv8tion.jda.api.events.emote.EmoteAddedEvent;
-import net.dv8tion.jda.api.events.emote.EmoteRemovedEvent;
-import net.dv8tion.jda.api.events.emote.update.EmoteUpdateNameEvent;
-import net.dv8tion.jda.api.events.emote.update.EmoteUpdateRolesEvent;
-import net.dv8tion.jda.api.events.guild.GuildAvailableEvent;
-import net.dv8tion.jda.api.events.guild.GuildBanEvent;
-import net.dv8tion.jda.api.events.guild.GuildJoinEvent;
-import net.dv8tion.jda.api.events.guild.GuildLeaveEvent;
-import net.dv8tion.jda.api.events.guild.GuildReadyEvent;
-import net.dv8tion.jda.api.events.guild.GuildTimeoutEvent;
-import net.dv8tion.jda.api.events.guild.GuildUnavailableEvent;
-import net.dv8tion.jda.api.events.guild.GuildUnbanEvent;
-import net.dv8tion.jda.api.events.guild.UnavailableGuildJoinedEvent;
-import net.dv8tion.jda.api.events.guild.UnavailableGuildLeaveEvent;
+import net.dv8tion.jda.api.events.channel.update.*;
+import net.dv8tion.jda.api.events.guild.*;
 import net.dv8tion.jda.api.events.guild.invite.GuildInviteCreateEvent;
 import net.dv8tion.jda.api.events.guild.invite.GuildInviteDeleteEvent;
-import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent;
-import net.dv8tion.jda.api.events.guild.member.GuildMemberRemoveEvent;
-import net.dv8tion.jda.api.events.guild.member.GuildMemberRoleAddEvent;
-import net.dv8tion.jda.api.events.guild.member.GuildMemberRoleRemoveEvent;
-import net.dv8tion.jda.api.events.guild.member.GuildMemberUpdateEvent;
+import net.dv8tion.jda.api.events.guild.member.*;
 import net.dv8tion.jda.api.events.guild.member.update.GuildMemberUpdateAvatarEvent;
 import net.dv8tion.jda.api.events.guild.member.update.GuildMemberUpdateBoostTimeEvent;
 import net.dv8tion.jda.api.events.guild.member.update.GuildMemberUpdateNicknameEvent;
@@ -69,64 +24,16 @@ import net.dv8tion.jda.api.events.guild.member.update.GuildMemberUpdatePendingEv
 import net.dv8tion.jda.api.events.guild.override.PermissionOverrideCreateEvent;
 import net.dv8tion.jda.api.events.guild.override.PermissionOverrideDeleteEvent;
 import net.dv8tion.jda.api.events.guild.override.PermissionOverrideUpdateEvent;
-import net.dv8tion.jda.api.events.guild.update.GuildUpdateAfkChannelEvent;
-import net.dv8tion.jda.api.events.guild.update.GuildUpdateAfkTimeoutEvent;
-import net.dv8tion.jda.api.events.guild.update.GuildUpdateBannerEvent;
-import net.dv8tion.jda.api.events.guild.update.GuildUpdateBoostCountEvent;
-import net.dv8tion.jda.api.events.guild.update.GuildUpdateBoostTierEvent;
-import net.dv8tion.jda.api.events.guild.update.GuildUpdateCommunityUpdatesChannelEvent;
-import net.dv8tion.jda.api.events.guild.update.GuildUpdateDescriptionEvent;
-import net.dv8tion.jda.api.events.guild.update.GuildUpdateExplicitContentLevelEvent;
-import net.dv8tion.jda.api.events.guild.update.GuildUpdateFeaturesEvent;
-import net.dv8tion.jda.api.events.guild.update.GuildUpdateIconEvent;
-import net.dv8tion.jda.api.events.guild.update.GuildUpdateLocaleEvent;
-import net.dv8tion.jda.api.events.guild.update.GuildUpdateMFALevelEvent;
-import net.dv8tion.jda.api.events.guild.update.GuildUpdateMaxMembersEvent;
-import net.dv8tion.jda.api.events.guild.update.GuildUpdateMaxPresencesEvent;
-import net.dv8tion.jda.api.events.guild.update.GuildUpdateNSFWLevelEvent;
-import net.dv8tion.jda.api.events.guild.update.GuildUpdateNameEvent;
-import net.dv8tion.jda.api.events.guild.update.GuildUpdateNotificationLevelEvent;
-import net.dv8tion.jda.api.events.guild.update.GuildUpdateOwnerEvent;
-import net.dv8tion.jda.api.events.guild.update.GuildUpdateRulesChannelEvent;
-import net.dv8tion.jda.api.events.guild.update.GuildUpdateSplashEvent;
-import net.dv8tion.jda.api.events.guild.update.GuildUpdateSystemChannelEvent;
-import net.dv8tion.jda.api.events.guild.update.GuildUpdateVanityCodeEvent;
-import net.dv8tion.jda.api.events.guild.update.GuildUpdateVerificationLevelEvent;
-import net.dv8tion.jda.api.events.guild.voice.GuildVoiceDeafenEvent;
-import net.dv8tion.jda.api.events.guild.voice.GuildVoiceGuildDeafenEvent;
-import net.dv8tion.jda.api.events.guild.voice.GuildVoiceGuildMuteEvent;
-import net.dv8tion.jda.api.events.guild.voice.GuildVoiceJoinEvent;
-import net.dv8tion.jda.api.events.guild.voice.GuildVoiceLeaveEvent;
-import net.dv8tion.jda.api.events.guild.voice.GuildVoiceMoveEvent;
-import net.dv8tion.jda.api.events.guild.voice.GuildVoiceMuteEvent;
-import net.dv8tion.jda.api.events.guild.voice.GuildVoiceRequestToSpeakEvent;
-import net.dv8tion.jda.api.events.guild.voice.GuildVoiceSelfDeafenEvent;
-import net.dv8tion.jda.api.events.guild.voice.GuildVoiceSelfMuteEvent;
-import net.dv8tion.jda.api.events.guild.voice.GuildVoiceStreamEvent;
-import net.dv8tion.jda.api.events.guild.voice.GuildVoiceSuppressEvent;
-import net.dv8tion.jda.api.events.guild.voice.GuildVoiceVideoEvent;
+import net.dv8tion.jda.api.events.guild.update.*;
+import net.dv8tion.jda.api.events.guild.voice.*;
 import net.dv8tion.jda.api.events.http.HttpRequestEvent;
-import net.dv8tion.jda.api.events.interaction.ButtonClickEvent;
-import net.dv8tion.jda.api.events.interaction.SelectionMenuEvent;
-import net.dv8tion.jda.api.events.interaction.SlashCommandEvent;
-import net.dv8tion.jda.api.events.message.MessageBulkDeleteEvent;
-import net.dv8tion.jda.api.events.message.MessageDeleteEvent;
-import net.dv8tion.jda.api.events.message.MessageEmbedEvent;
-import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
-import net.dv8tion.jda.api.events.message.MessageUpdateEvent;
+import net.dv8tion.jda.api.events.message.*;
 import net.dv8tion.jda.api.events.message.react.MessageReactionAddEvent;
 import net.dv8tion.jda.api.events.message.react.MessageReactionRemoveAllEvent;
-import net.dv8tion.jda.api.events.message.react.MessageReactionRemoveEmoteEvent;
 import net.dv8tion.jda.api.events.message.react.MessageReactionRemoveEvent;
 import net.dv8tion.jda.api.events.role.RoleCreateEvent;
 import net.dv8tion.jda.api.events.role.RoleDeleteEvent;
-import net.dv8tion.jda.api.events.role.update.RoleUpdateColorEvent;
-import net.dv8tion.jda.api.events.role.update.RoleUpdateHoistedEvent;
-import net.dv8tion.jda.api.events.role.update.RoleUpdateIconEvent;
-import net.dv8tion.jda.api.events.role.update.RoleUpdateMentionableEvent;
-import net.dv8tion.jda.api.events.role.update.RoleUpdateNameEvent;
-import net.dv8tion.jda.api.events.role.update.RoleUpdatePermissionsEvent;
-import net.dv8tion.jda.api.events.role.update.RoleUpdatePositionEvent;
+import net.dv8tion.jda.api.events.role.update.*;
 import net.dv8tion.jda.api.events.self.SelfUpdateAvatarEvent;
 import net.dv8tion.jda.api.events.self.SelfUpdateMFAEvent;
 import net.dv8tion.jda.api.events.self.SelfUpdateNameEvent;
@@ -142,14 +49,13 @@ import net.dv8tion.jda.api.events.thread.member.ThreadMemberLeaveEvent;
 import net.dv8tion.jda.api.events.user.UserActivityEndEvent;
 import net.dv8tion.jda.api.events.user.UserActivityStartEvent;
 import net.dv8tion.jda.api.events.user.UserTypingEvent;
-import net.dv8tion.jda.api.events.user.update.UserUpdateActivitiesEvent;
-import net.dv8tion.jda.api.events.user.update.UserUpdateActivityOrderEvent;
-import net.dv8tion.jda.api.events.user.update.UserUpdateAvatarEvent;
-import net.dv8tion.jda.api.events.user.update.UserUpdateDiscriminatorEvent;
-import net.dv8tion.jda.api.events.user.update.UserUpdateFlagsEvent;
-import net.dv8tion.jda.api.events.user.update.UserUpdateNameEvent;
-import net.dv8tion.jda.api.events.user.update.UserUpdateOnlineStatusEvent;
+import net.dv8tion.jda.api.events.user.update.*;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 
 @SuppressWarnings({"deprecation"})
 @AllArgsConstructor
@@ -208,36 +114,10 @@ public class AthenaEventListener extends ListenerAdapter {
     }
 
     @Override
-    public void onShutdown(ShutdownEvent event) {
-        invokeEvent(event.getClass(), event);
-        bot.getCommandLine().setQuit(true);
-        bot.getCommandLineThread().stop();
-    }
-
-    @Override
     public void onMessageReceived(MessageReceivedEvent event) {
         invokeEvent(event.getClass(), event);
     }
 
-    @Override
-    public void onApplicationCommandCreate(ApplicationCommandCreateEvent event) {
-        invokeEvent(event.getClass(), event);
-    }
-
-    @Override
-    public void onApplicationCommandDelete(ApplicationCommandDeleteEvent event) {
-        invokeEvent(event.getClass(), event);
-    }
-
-    @Override
-    public void onApplicationCommandUpdate(ApplicationCommandUpdateEvent event) {
-        invokeEvent(event.getClass(), event);
-    }
-
-    @Override
-    public void onButtonClick(ButtonClickEvent event) {
-        invokeEvent(event.getClass(), event);
-    }
 
     @Override
     public void onChannelCreate(ChannelCreateEvent event) {
@@ -321,31 +201,6 @@ public class AthenaEventListener extends ListenerAdapter {
 
     @Override
     public void onChannelUpdateUserLimit(ChannelUpdateUserLimitEvent event) {
-        invokeEvent(event.getClass(), event);
-    }
-
-    @Override
-    public void onDisconnect(DisconnectEvent event) {
-        invokeEvent(event.getClass(), event);
-    }
-
-    @Override
-    public void onEmoteAdded(EmoteAddedEvent event) {
-        invokeEvent(event.getClass(), event);
-    }
-
-    @Override
-    public void onEmoteRemoved(EmoteRemovedEvent event) {
-        invokeEvent(event.getClass(), event);
-    }
-
-    @Override
-    public void onEmoteUpdateName(EmoteUpdateNameEvent event) {
-        invokeEvent(event.getClass(), event);
-    }
-
-    @Override
-    public void onEmoteUpdateRoles(EmoteUpdateRolesEvent event) {
         invokeEvent(event.getClass(), event);
     }
 
@@ -461,36 +316,6 @@ public class AthenaEventListener extends ListenerAdapter {
     }
 
     @Override
-    public void onReady(ReadyEvent event) {
-        invokeEvent(event.getClass(), event);
-    }
-
-    @Override
-    public void onResumed(ResumedEvent event) {
-        invokeEvent(event.getClass(), event);
-    }
-
-    @Override
-    public void onReconnected(ReconnectedEvent event) {
-        invokeEvent(event.getClass(), event);
-    }
-
-    @Override
-    public void onStatusChange(StatusChangeEvent event) {
-        invokeEvent(event.getClass(), event);
-    }
-
-    @Override
-    public void onSlashCommand(SlashCommandEvent event) {
-        invokeEvent(event.getClass(), event);
-    }
-
-    @Override
-    public void onSelectionMenu(SelectionMenuEvent event) {
-        invokeEvent(event.getClass(), event);
-    }
-
-    @Override
     public void onUserUpdateName(UserUpdateNameEvent event) {
         invokeEvent(event.getClass(), event);
     }
@@ -592,11 +417,6 @@ public class AthenaEventListener extends ListenerAdapter {
 
     @Override
     public void onMessageReactionRemoveAll(MessageReactionRemoveAllEvent event) {
-        invokeEvent(event.getClass(), event);
-    }
-
-    @Override
-    public void onMessageReactionRemoveEmote(MessageReactionRemoveEmoteEvent event) {
         invokeEvent(event.getClass(), event);
     }
 
@@ -875,20 +695,6 @@ public class AthenaEventListener extends ListenerAdapter {
         invokeEvent(event.getClass(), event);
     }
 
-    @Override
-    public void onGuildVoiceJoin(GuildVoiceJoinEvent event) {
-        invokeEvent(event.getClass(), event);
-    }
-
-    @Override
-    public void onGuildVoiceMove(GuildVoiceMoveEvent event) {
-        invokeEvent(event.getClass(), event);
-    }
-
-    @Override
-    public void onGuildVoiceLeave(GuildVoiceLeaveEvent event) {
-        invokeEvent(event.getClass(), event);
-    }
 
     @Override
     public void onGuildVoiceMute(GuildVoiceMuteEvent event) {

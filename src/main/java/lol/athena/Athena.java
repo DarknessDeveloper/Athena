@@ -19,9 +19,10 @@ import net.dv8tion.jda.api.JDA.Status;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.Activity.ActivityType;
-import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.entities.User;
+import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
+import net.dv8tion.jda.api.entities.channel.middleman.GuildChannel;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.internal.JDAImpl;
 import org.apache.commons.lang3.Validate;
@@ -35,7 +36,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jline.terminal.Terminal;
 import org.jline.terminal.TerminalBuilder;
 
-import javax.security.auth.login.LoginException;
 import java.awt.*;
 import java.io.*;
 import java.lang.reflect.Field;
@@ -150,9 +150,6 @@ public class Athena {
 				}
 			} catch (Exception ex) {
 				logger.severe("(" + attempt2 + ") &cFailed to connect to Discord.");
-				if (ex instanceof LoginException) { // Token failure.
-					throw ex;
-				}
 
 				if (attempt < 9) {
 					logger.severe("(" + attempt2 + ") &cRetrying in " + attempt2 + " second(s).");
@@ -189,7 +186,7 @@ public class Athena {
 			logger.warning(Lang.get("log.startup.fail"));
 		}
 
-		MessageChannel channel = (MessageChannel) jda.getGuildChannelById(config.getString("ids.announcements", "987855895113388052"));
+		TextChannel channel = (TextChannel) jda.getGuildChannelById(config.getString("ids.announcements", "987855895113388052"));
 		if (channel != null) {
 			logSponsors(channel);
 		}
@@ -215,7 +212,7 @@ public class Athena {
 		}
 	}
 
-	private void logSponsors(MessageChannel channel) {
+	private void logSponsors(TextChannel channel) {
 		if (debug) {
 			return;
 		}
@@ -386,7 +383,7 @@ public class Athena {
 			builder.getFields().add(1, new net.dv8tion.jda.api.entities.MessageEmbed.Field("Storage Engine", storageEngine.getClass().getSimpleName(), false));
 		}
 
-		MessageChannel channel = (MessageChannel) jda.getGuildChannelById(config.getString("ids.announcements", "987855895113388052"));
+		GuildChannel channel = jda.getGuildChannelById(config.getString("ids.announcements", "987855895113388052"));
 		if (channel == null) {
 			logger.warning("&#ff4444Unable to locate the Athena status channel.");
 			return false;
@@ -398,7 +395,7 @@ public class Athena {
 	private boolean logAthenaStatus(MessageEmbed embed) {
 		try {
 
-			MessageChannel channel = (MessageChannel) jda.getGuildChannelById(config.getString("ids.announcements", "987855895113388052"));
+			TextChannel channel = (TextChannel)  jda.getGuildChannelById(config.getString("ids.announcements", "987855895113388052"));
 			if (channel == null) {
 				logger.warning("&#ff4444Unable to locate the Athena status channel.");
 				return false;

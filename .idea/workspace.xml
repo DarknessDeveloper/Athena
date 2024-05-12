@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab2c7cfc-5e3c-4ad1-a5c4-2d994083d9e8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/lol/athena/engine/sql/EngineSql.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lol/athena/engine/sql/EngineSql.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lol/athena/engine/sqlite/EngineSqLite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lol/athena/engine/sqlite/EngineSqLite.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lol/athena/events/AthenaEventListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lol/athena/events/AthenaEventListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/lol/athena/plugin/Plugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lol/athena/plugin/Plugin.java" afterDir="false" />
-    </list>
+    <list default="true" id="ab2c7cfc-5e3c-4ad1-a5c4-2d994083d9e8" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,13 +37,12 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="Athena-Gradle" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="publishing" type="c8890929:TasksNode$1" />
+                <item name="shadow" type="c8890929:TasksNode$1" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="Athena-Gradle" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="shadow" type="c8890929:TasksNode$1" />
+                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
               </path>
             </expand>
             <select />
